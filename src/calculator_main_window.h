@@ -3,6 +3,7 @@
 #include <gtk/gtk.h>
 
 #include "calculator_application.h"
+#include "calculator_parser.h"
 
 G_BEGIN_DECLS
 
@@ -11,6 +12,6 @@ G_BEGIN_DECLS
 G_DECLARE_FINAL_TYPE (CalculatorMainWindow, calculator_main_window, CALCULATOR, MAIN_WINDOW, GtkApplicationWindow)
 
 CalculatorMainWindow *
-calculator_main_window_new (CalculatorApplication *application);
+calculator_main_window_new (CalculatorApplication *application, CalculatorParser *parser);
 
 G_END_DECLS

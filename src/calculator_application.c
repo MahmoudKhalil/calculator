@@ -1,5 +1,6 @@
 #include "calculator_application.h"
 #include "calculator_main_window.h"
+#include "calculator_parser.h"
 
 struct _CalculatorApplication
 {
@@ -12,7 +13,10 @@ static void
 calculator_application_activate (GApplication *application)
 {
     CalculatorApplication *calculator_application = CALCULATOR_APPLICATION (application);
-    CalculatorMainWindow *main_window = calculator_main_window_new (calculator_application);
+
+    CalculatorParser *parser = calculator_parser_new ();
+
+    CalculatorMainWindow *main_window = calculator_main_window_new (calculator_application, parser);
     
     gtk_window_present (GTK_WINDOW (main_window));
 }
