@@ -12,9 +12,9 @@ struct _CalculatorMainWindow
 G_DEFINE_TYPE (CalculatorMainWindow, calculator_main_window, GTK_TYPE_APPLICATION_WINDOW)
 
 static void
-calculator_main_window_numbers_btn_clicked (GtkWidget *widget, gpointer data)
+calculator_main_window_adding_input_to_numbers_entry (CalculatorMainWindow *self, GtkWidget *widget)
 {
-    CalculatorMainWindow *main_window = CALCULATOR_MAIN_WINDOW (data);
+    CalculatorMainWindow *main_window = self;
     GtkButton *clicked_btn = GTK_BUTTON (widget);
 
     const gchar *clicked_btn_label = gtk_button_get_label (clicked_btn);
@@ -23,40 +23,49 @@ calculator_main_window_numbers_btn_clicked (GtkWidget *widget, gpointer data)
     const gchar *numbers_entry_new_text = g_strconcat (numbers_entry_text, clicked_btn_label);
 
     gtk_entry_set_text (main_window->numbers_entry, numbers_entry_new_text);
+}
 
-    calculator_parser_append_zero (main_window->parser, numbers_entry_new_text);
+static void
+calculator_main_window_numbers_btn_clicked (GtkWidget *widget, gpointer data)
+{
+    CalculatorMainWindow *main_window = CALCULATOR_MAIN_WINDOW (data);
+    
+    calculator_main_window_adding_input_to_numbers_entry (main_window, widget);
 }
 
 static void
 calculator_main_window_operation_btn_clicked (GtkWidget *widget, gpointer data)
 {
     CalculatorMainWindow *main_window = CALCULATOR_MAIN_WINDOW (data);
-    GtkButton *clicked_btn = GTK_BUTTON (widget);
-
-    const gchar *clicked_btn_label = gtk_button_get_label (clicked_btn);
-    const gchar *numbers_entry_text = gtk_entry_get_text (main_window->numbers_entry);
-
-    const gchar *numbers_entry_new_text = g_strconcat (numbers_entry_text, clicked_btn_label);
-
-    gtk_entry_set_text (main_window->numbers_entry, numbers_entry_new_text);
+    
+    calculator_main_window_adding_input_to_numbers_entry (main_window, widget);
 }
 
 static void
 calculator_main_window_negative_btn_clicked (GtkWidget *widget, gpointer data)
 {
-    g_print ("Negative clicked");
+    CalculatorMainWindow *main_window = CALCULATOR_MAIN_WINDOW (data);
+
+    // gtk_entry_set_text (main_window->numbers_entry, 
+                        // calculator_parser_insert_negative (main_window->parser, gtk_entry_get_text (main_window->numbers_entry)));
 }
 
 static void
 calculator_main_window_equal_btn_clicked (GtkWidget *widget, gpointer data)
 {
-    g_print ("Equal clicked");
+    CalculatorMainWindow *main_window = CALCULATOR_MAIN_WINDOW (data);
+    
+    calculator_main_window_adding_input_to_numbers_entry (main_window, widget);
+
+    calculator_parser_calculate_expression (main_window->parser, gtk_entry_get_text (main_window->numbers_entry));
 }
 
 static void
 calculator_main_window_dot_btn_clicked (GtkWidget *widget, gpointer data)
 {
-    g_print ("Dot clicked");
+    CalculatorMainWindow *main_window = CALCULATOR_MAIN_WINDOW (data);
+    
+    calculator_main_window_adding_input_to_numbers_entry (main_window, widget);
 }
 
 static void
