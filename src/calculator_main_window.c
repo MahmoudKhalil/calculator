@@ -62,7 +62,12 @@ calculator_main_window_equal_btn_clicked (GtkWidget *widget, gpointer data)
 static void
 calculator_main_window_dot_btn_clicked (GtkWidget *widget, gpointer data)
 {
+    CalculatorMainWindow *main_window = CALCULATOR_MAIN_WINDOW (data);
+    const gchar *input = gtk_entry_get_text (main_window->numbers_entry);
+    const gchar character = gtk_button_get_label (GTK_BUTTON (widget))[0];
     
+    const gchar *result_exp = calculator_parser_insert_to_expression(main_window->parser, input, character);
+    gtk_entry_set_text (main_window->numbers_entry, result_exp);
 }
 
 static void

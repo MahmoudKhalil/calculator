@@ -99,9 +99,9 @@ calculator_parser_insert_to_expression (CalculatorParser *self, const gchar *inp
 
         if (character == '.')
         {
-            result_exp = g_strconcat ("0", ".");
+            result_exp = g_strconcat ("0", ".", NULL);
             
-            return (const gchar *) input;
+            return (const gchar *) result_exp;
         }
     }
     else if (character == '+' || character == '*' || character == '/')
