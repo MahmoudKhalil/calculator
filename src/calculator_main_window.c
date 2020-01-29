@@ -29,6 +29,16 @@ static void
 calculator_main_window_numbers_btn_clicked (GtkWidget *widget, gpointer data)
 {
     CalculatorMainWindow *main_window = CALCULATOR_MAIN_WINDOW (data);
+
+    const gchar *clicked_btn_label = gtk_button_get_label (GTK_BUTTON (widget));
+
+    if (g_strcmp0 (clicked_btn_label, "0") == 0)
+    {
+        if (! calculator_parser_append_zero (main_window->parser, gtk_entry_get_text (main_window->numbers_entry)))
+        {
+            return;
+        }
+    }
     
     calculator_main_window_adding_input_to_numbers_entry (main_window, widget);
 }

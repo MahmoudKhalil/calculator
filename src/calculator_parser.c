@@ -74,7 +74,7 @@ calculator_parser_parse_expression (CalculatorParser *self, const gchar *input)
     gchar *number = g_strdup ("\0");
     for (int i = 0; input[i] != '\0'; i++)
     {
-        if (input[i] == '+' || input[i] == '*' || input[i] == '/' || input[i] == '=')
+        if (input[i] == '+' || input[i] == '*' || input[i] == '/')
         {
             g_ptr_array_add (self->numbers_array, number);
 
@@ -97,12 +97,26 @@ calculator_parser_parse_expression (CalculatorParser *self, const gchar *input)
         number = g_strconcat (number, tmp, NULL);
     }
 
+    g_ptr_array_add (self->numbers_array, number);
+
     calculator_parser_parse_numbers (self);
 }
 
 gboolean
 calculator_parser_append_zero (CalculatorParser *self, const gchar *input)
 {
+    g_printf ("In append zero method\n");
+    calculator_parser_parse_expression (self, input);
+
+    if (self->numbers_array != NULL && self->numbers_array->len > 0)
+    {
+        gchar *last_number = g_ptr_array_index (self->numbers_array, self->numbers_array->len - 1);
+        if (last_number[0] == '0' && last_number[1] == '\0')
+        {
+            return FALSE;
+        }
+    }
+
     return TRUE;
 }
 
