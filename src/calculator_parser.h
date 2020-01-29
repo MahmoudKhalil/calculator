@@ -17,13 +17,13 @@ G_DECLARE_FINAL_TYPE (CalculatorParser, calculator_parser, CALCULATOR, PARSER, G
 CalculatorParser *
 calculator_parser_new (void);
 
+const gchar *
+calculator_parser_insert_to_expression (CalculatorParser *self, const gchar *input, const gchar character);
+
 gboolean
 calculator_parser_append_zero (CalculatorParser *self, const gchar *input);
 
-gchar *
-calculator_parser_insert_negative (CalculatorParser *self, const gchar *text);
-
-void
-calculator_parser_calculate_expression (CalculatorParser *self, const gchar *text);
+gdouble
+calculator_parser_evaluate_expression (CalculatorParser *self, const gchar *text);
 
 G_END_DECLS

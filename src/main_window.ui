@@ -55,7 +55,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="calculator_main_window_numbers_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
+                <signal name="clicked" handler="calculator_main_window_digit_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -69,7 +69,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="calculator_main_window_numbers_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
+                <signal name="clicked" handler="calculator_main_window_digit_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -83,7 +83,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="calculator_main_window_numbers_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
+                <signal name="clicked" handler="calculator_main_window_digit_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -124,7 +124,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="calculator_main_window_numbers_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
+                <signal name="clicked" handler="calculator_main_window_digit_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -138,7 +138,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="calculator_main_window_numbers_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
+                <signal name="clicked" handler="calculator_main_window_digit_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -152,7 +152,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="calculator_main_window_numbers_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
+                <signal name="clicked" handler="calculator_main_window_digit_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -193,7 +193,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="calculator_main_window_numbers_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
+                <signal name="clicked" handler="calculator_main_window_digit_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -207,7 +207,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="calculator_main_window_numbers_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
+                <signal name="clicked" handler="calculator_main_window_digit_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -221,7 +221,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="calculator_main_window_numbers_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
+                <signal name="clicked" handler="calculator_main_window_digit_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
@@ -276,7 +276,7 @@
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="receives_default">True</property>
-                <signal name="clicked" handler="calculator_main_window_numbers_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
+                <signal name="clicked" handler="calculator_main_window_digit_btn_clicked" object="CalculatorMainWindow" swapped="no"/>
               </object>
               <packing>
                 <property name="expand">True</property>
