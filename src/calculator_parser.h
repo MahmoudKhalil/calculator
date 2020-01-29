@@ -20,10 +20,7 @@ calculator_parser_new (void);
 const gchar *
 calculator_parser_insert_to_expression (CalculatorParser *self, const gchar *input, const gchar character);
 
-gboolean
-calculator_parser_append_zero (CalculatorParser *self, const gchar *input);
-
-gdouble
+void
 calculator_parser_evaluate_expression (CalculatorParser *self, const gchar *text);
 
 G_END_DECLS

@@ -56,7 +56,9 @@ calculator_main_window_negative_btn_clicked (GtkWidget *widget, gpointer data)
 static void
 calculator_main_window_equal_btn_clicked (GtkWidget *widget, gpointer data)
 {
-
+    CalculatorMainWindow *main_window = CALCULATOR_MAIN_WINDOW (data);
+    const gchar *input = gtk_entry_get_text (main_window->numbers_entry);
+    calculator_parser_evaluate_expression (main_window->parser, input);
 }
 
 static void

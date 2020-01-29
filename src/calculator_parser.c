@@ -5,6 +5,7 @@ struct _CalculatorParser
     GObject parent;
 
     gchar *postfix_expression;
+    gchar *operators;
 };
 
 G_DEFINE_TYPE (CalculatorParser, calculator_parser, G_TYPE_OBJECT);
@@ -19,23 +20,80 @@ calculator_parser_parse_numbers (CalculatorParser *self)
 static void
 calculator_parser_parse_expression (CalculatorParser *self, const gchar *input)
 {
-    // if (input[0] == '\0')
-    // {
-    //     return;
-    // }
+    if (input[0] == '\0')
+    {
+        return;
+    }
 
-    // if (self->postfix_expression != NULL)
-    // {
-    //     g_free (self->postfix_expression);
-    // }
+    if (self->postfix_expression != NULL)
+    {
+        g_free (self->postfix_expression);
+        self->postfix_expression = NULL;
+    }
+
+    if (self->operators != NULL)
+    {
+        g_free (self->operators);
+        self->operators = NULL;
+    }
     
-    // for (guint i = 0; input[i] != '\0'; i++)
-    // {
-    //     if (input[i] != '+' && input[i] != '*' && input[i] != '/')
-    //     {
-    //         self->postfix_expression = 
-    //     }
-    // }
+    for (guint i = 0; input[i] != '\0'; i++)
+    {
+        g_printf ("Inside the loop\n");
+
+        if (input[i] == '+' || input[i] == '*' || input[i] == '/')
+        {
+            self->postfix_expression = g_strconcat (self->postfix_expression, ",", NULL);
+
+            char tmp[2] = ".";
+            tmp[0] = input[i];
+            if (self->operators == NULL)
+            {
+                self->operators = g_strconcat (tmp, NULL);
+            }
+            else
+            {
+                self->operators = g_strconcat (self->operators, ",", NULL);
+                self->operators = g_strconcat (self->operators, tmp, NULL);
+            }
+
+            continue;
+        }
+        else if (input[i] == '-')
+        {
+            if (i != 0 && input[i - 1] != '+' && input[i - 1] != '-' && input[i - 1] != '*' && input[i - 1] != '/')
+            {
+                self->postfix_expression = g_strconcat (self->postfix_expression, ",", NULL);
+
+                char tmp[2] = ".";
+                tmp[0] = input[i];
+                if (self->operators == NULL)
+                {
+                    self->operators = g_strconcat (tmp, NULL);
+                }
+                else
+                {
+                    self->operators = g_strconcat (self->operators, ",", NULL);
+                    self->operators = g_strconcat (self->operators, tmp, NULL);
+                }
+                continue;
+            }
+        }
+
+        char tmp[2] = ".";
+        tmp[0] = input[i];
+
+        if (self->postfix_expression == NULL)
+        {
+            self->postfix_expression = g_strconcat (tmp, NULL);
+            continue;
+        }
+
+        self->postfix_expression = g_strconcat (self->postfix_expression, tmp, NULL);
+    }
+
+    g_printf ("Postfix Expression : %s\n", self->postfix_expression);
+    g_printf ("operators : %s\n", self->operators);
 }
 
 static gboolean
@@ -176,13 +234,7 @@ calculator_parser_insert_to_expression (CalculatorParser *self, const gchar *inp
     return (const gchar *) result_exp;
 }
 
-gboolean
-calculator_parser_append_zero (CalculatorParser *self, const gchar *input)
-{
-    
-}
-
-gdouble
+void
 calculator_parser_evaluate_expression (CalculatorParser *self, const gchar *text)
 {
     calculator_parser_parse_expression (self, text);
