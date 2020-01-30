@@ -183,7 +183,7 @@ calculator_parser_insert_to_expression (CalculatorParser *self, const gchar *inp
     {
         gchar input_last_char = input[strlen (input) - 1];
 
-        if (input_last_char == '+')
+        if (input_last_char == '+' || input_last_char == '-')
         {
             result_exp = g_strdup (input);
             result_exp[strlen (result_exp) - 1] = character;
