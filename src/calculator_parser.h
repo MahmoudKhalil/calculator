@@ -1,10 +1,11 @@
 #pragma once
 
+#include <stdio.h>
+#include <string.h>
+
 #include <glib.h>
 #include <glib/gprintf.h>
 #include <gmodule.h>
-
-#include <string.h>
 
 #include "calculator_application.h"
 
@@ -20,7 +21,7 @@ calculator_parser_new (void);
 const gchar *
 calculator_parser_insert_to_expression (CalculatorParser *self, const gchar *input, const gchar character);
 
-void
+const gchar *
 calculator_parser_evaluate_expression (CalculatorParser *self, const gchar *text);
 
 G_END_DECLS

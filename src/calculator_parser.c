@@ -168,6 +168,11 @@ calculator_parser_insert_to_expression (CalculatorParser *self, const gchar *inp
 
         if (input_last_char == '+' || input_last_char == '-' || input_last_char == '*' || input_last_char == '/')
         {
+            if (strlen (input) == 1)
+            {
+                return "Invalid Expression !";
+            }
+
             result_exp = g_strdup (input);
             result_exp[strlen (result_exp) - 1] = character;
             
@@ -204,6 +209,17 @@ calculator_parser_insert_to_expression (CalculatorParser *self, const gchar *inp
             return (const gchar *) g_strconcat (input, ".", NULL);
         }
     }
+    else if (character == '=') {
+        gchar last_char = input[strlen (input) - 1];
+        if (last_char == '+' || last_char == '-' || last_char == '*' || last_char == '/')
+        {
+            return "Invalid Expression !";
+        }
+        else
+        {
+            return input;
+        }
+    }
     else
     {
         gchar input_last_char = input[strlen (input) - 1];
@@ -234,8 +250,66 @@ calculator_parser_insert_to_expression (CalculatorParser *self, const gchar *inp
     return (const gchar *) result_exp;
 }
 
-void
+const gchar *
 calculator_parser_evaluate_expression (CalculatorParser *self, const gchar *text)
 {
+    if (g_strcmp0 (text, "Invalid Expression!") == 0)
+    {
+        return text;
+    }
+
     calculator_parser_parse_expression (self, text);
+    gchar **str_operands, **str_operators;
+    // Should handle NULL
+    if (self->postfix_expression != NULL)
+    {
+        str_operands = g_strsplit (self->postfix_expression, ",", 10);
+    }
+    else
+    {
+        return text;
+    }
+
+    if (self->operators != NULL)
+    {
+        str_operators = g_strsplit (self->operators, ",", 1);
+    }
+    else
+    {
+        return text;
+    }
+
+    gint operators_index = 0;
+    gdouble result = g_ascii_strtod (str_operands[0], NULL);
+    g_printf ("Number is : %lf\n", result);
+
+    for (int i = 1; str_operands[i] != NULL; i++)
+    {
+        gdouble tmp = g_ascii_strtod (str_operands[i], NULL);
+
+        if (g_strcmp0 (str_operators[operators_index], "+") == 0)
+        {
+            result = result + tmp;
+        }
+        else if (g_strcmp0 (str_operators[operators_index], "-") == 0)
+        {
+            result = result - tmp;
+        }
+        else if (g_strcmp0 (str_operators[operators_index], "*") == 0)
+        {
+            result = result * tmp;
+        }
+        else if (g_strcmp0 (str_operators[operators_index], "/") == 0)
+        {
+            result = result / tmp;
+        }
+
+        operators_index++;
+    }
+
+    gchar buffer[20];
+    const gchar *str_result = g_ascii_dtostr (buffer, 20, result);
+
+    g_printf ("Result : %s\n", str_result);
+    return g_locale_to_utf8 (str_result, -1, NULL, NULL, NULL);
 }
